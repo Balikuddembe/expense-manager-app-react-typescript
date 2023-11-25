@@ -4,6 +4,7 @@ import { FiSearch } from "react-icons/fi";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiOutlineLogout } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
+import './Sidebar.css';
 
 const Sidebar = () => {
   return (
