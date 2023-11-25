@@ -1,9 +1,8 @@
-import { AiFillHome } from "react-icons/ai";
+import { AiFillHome, AiOutlineLogout } from "react-icons/ai";
 import { BiAddToQueue } from "react-icons/bi";
 import { FiSearch } from "react-icons/fi";
 import { BsFillPersonFill } from "react-icons/bs";
-import { AiOutlineLogout } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import './Sidebar.css';
 
 const Sidebar = () => {
@@ -34,10 +33,10 @@ const Sidebar = () => {
             </NavLink>
           </li>
           <li className="list-item">
-            <NavLink to="/">
+            <Link to="/">
             <AiOutlineLogout size={25} />
             <div>Logout</div>
-            </NavLink>
+            </Link>
           </li>
         </ul>
   )
