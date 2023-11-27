@@ -4,8 +4,31 @@ import ExpenseList from "./components/expense-list/ExpenseList";
 import AddExpense from "./components/add-expense/AddExpense";
 import SearchExpense from "./components/search-expense/SearchExpense";
 import Profile from "./components/profile/Profile";
+import { useEffect, useState } from "react";
+import axios from 'axios';
 
 const App = () => {
+  const [expenses, setExpenses] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  useEffect(() => {
+    try {
+      setIsLoading(true);
+      setError('');
+      const getExpenses = async() => {
+        const { data } = await axios.get('http://localhost:4000/expenses');
+        console.log(data)
+        setExpenses(data);
+      }
+      getExpenses();
+    } catch(error) {
+      console.log(error);
+      setError('something went wrong.Try again');
+     } finally {
+      setIsLoading(false);
+     }
+  },[]);
+
   return (
     <BrowserRouter>
     <Layout>
