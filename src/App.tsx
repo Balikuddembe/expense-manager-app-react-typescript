@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import ExpenseList from "./components/expense-list/ExpenseList";
 import AddExpense from "./components/add-expense/AddExpense";
@@ -14,6 +14,7 @@ const App = () => {
         <Route path="/add" element={<AddExpense />}/>
         <Route path="/search" element={<SearchExpense />}/>
         <Route path="/profile" element={<Profile />}/>
+        <Route path="*" element={<Navigate to="/" />}/>
       </Routes>
     </Layout>
     </BrowserRouter>
