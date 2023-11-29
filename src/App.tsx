@@ -10,11 +10,11 @@ import axios from 'axios';
 const App = () => {
   const [expenses, setExpenses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
   useEffect(() => {
     try {
       setIsLoading(true);
-      setError('');
+      setErrorMsg('');
       const getExpenses = async() => {
         const { data } = await axios.get('http://localhost:4000/expenses');
         console.log(data)
@@ -23,7 +23,7 @@ const App = () => {
       getExpenses();
     } catch(error) {
       console.log(error);
-      setError('something went wrong.Try again');
+      setErrorMsg('something went wrong.Try again');
      } finally {
       setIsLoading(false);
      }
@@ -33,7 +33,7 @@ const App = () => {
     <BrowserRouter>
     <Layout>
       <Routes>
-        <Route path="/" element={<ExpenseList />}/>
+        <Route path="/" element={<ExpenseList isLoading={isLoading} errorMsg={errorMsg} expenses={expenses}/>}/>
         <Route path="/add" element={<AddExpense />}/>
         <Route path="/search" element={<SearchExpense />}/>
         <Route path="/profile" element={<Profile />}/>
