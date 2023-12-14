@@ -1,8 +1,8 @@
-import React from 'react'
+import ExpenseForm from '../expense-form/ExpenseForm'
 
 const AddExpense = () => {
   return (
-    <div>AddExpense</div>
+    <div><ExpenseForm /></div>
   )
 }
 
