@@ -5,7 +5,7 @@ import ExpenseTable from "./ExpenseTable";
 interface ExpenseListProps {
   isLoading: boolean;
   expenses: Expense[];
-  errorMsg: String;
+  errorMsg: string;
 }
 
 const ExpenseList:FC<ExpenseListProps> = ({isLoading, expenses, errorMsg}) => {
