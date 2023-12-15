@@ -20,6 +20,20 @@
             "expense_date": "2023-04-16",
             "expense_amount": "10000",
             "description": "Personal expenses"
+        },
+        {
+            "id": 4,
+            "expense_type": "cash",
+            "expense_date": "2023-06-16",
+            "expense_amount": "120000",
+            "description": "Water bill"
+        },
+        {
+            "id": 4,
+            "expense_type": "cash",
+            "expense_date": "2023-01-18",
+            "expense_amount": "50000",
+            "description": "Water bill"
         }
     ]
 }
