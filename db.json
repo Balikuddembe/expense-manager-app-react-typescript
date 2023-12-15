@@ -1,39 +1,109 @@
 {
-    "expenses": [
-        {
-            "id": 1,
-            "expense_type": "cash",
-            "expense_date": "2023-02-16",
-            "expense_amount": "1000",
-            "description": "Electricity bill"
-        },
-        {
-            "id": 2,
-            "expense_type": "card",
-            "expense_date": "2023-04-16",
-            "expense_amount": "500",
-            "description": "Internet bill "
-        },
-        {
-            "id": 3,
-            "expense_type": "cash",
-            "expense_date": "2023-04-16",
-            "expense_amount": "10000",
-            "description": "Personal expenses"
-        },
-        {
-            "id": 4,
-            "expense_type": "cash",
-            "expense_date": "2023-06-16",
-            "expense_amount": "120000",
-            "description": "Water bill"
-        },
-        {
-            "id": 4,
-            "expense_type": "cash",
-            "expense_date": "2023-01-18",
-            "expense_amount": "50000",
-            "description": "Water bill"
-        }
-    ]
+  "expenses": [
+    {
+      "id": 1,
+      "expense_type": "cash",
+      "expense_date": "2023-02-16",
+      "expense_amount": "1000",
+      "description": "Electricity bill"
+    },
+    {
+      "id": 2,
+      "expense_type": "card",
+      "expense_date": "2023-04-16",
+      "expense_amount": "500",
+      "description": "Internet bill "
+    },
+    {
+      "id": 3,
+      "expense_type": "cash",
+      "expense_date": "2023-04-16",
+      "expense_amount": "10000",
+      "description": "Personal expenses"
+    },
+    {
+      "id": 4,
+      "expense_type": "cash",
+      "expense_date": "2023-06-16",
+      "expense_amount": "120000",
+      "description": "Water bill"
+    },
+    {
+      "expense_type": "cash",
+      "expense_date": "2023-12-07",
+      "expense_amount": "1208",
+      "description": "Back to school shoes",
+      "id": 5
+    },
+    {
+      "expense_type": "card",
+      "expense_date": "2023-12-01",
+      "expense_amount": "500",
+      "description": "Pizza und Kase",
+      "id": 6
+    },
+    {
+      "expense_type": "card",
+      "expense_date": "2023-12-02",
+      "expense_amount": "400",
+      "description": "Wein und Bier",
+      "id": 7
+    },
+    {
+      "expense_type": "cash",
+      "expense_date": "2023-12-03",
+      "expense_amount": "9",
+      "description": "Pizza",
+      "id": 8
+    },
+    {
+      "expense_type": "cash",
+      "expense_date": "2023-12-12",
+      "expense_amount": "120",
+      "description": "Kaffee und Brot",
+      "id": 9
+    },
+    {
+      "expense_type": "cash",
+      "expense_date": "2023-12-10",
+      "expense_amount": "25",
+      "description": "Wasser",
+      "id": 10
+    },
+    {
+      "expense_type": "cash",
+      "expense_date": "2023-12-07",
+      "expense_amount": "445",
+      "description": "hjkhkjhkj",
+      "id": 11
+    },
+    {
+      "expense_type": "cash",
+      "expense_date": "2023-12-12",
+      "expense_amount": "34",
+      "description": "det",
+      "id": 12
+    },
+    {
+      "expense_type": "card",
+      "expense_date": "2023-12-13",
+      "expense_amount": "365",
+      "description": "Chicken",
+      "id": 13
+    },
+    {
+      "expense_type": "cash",
+      "expense_date": "2023-12-05",
+      "expense_amount": "456",
+      "description": "dfd",
+      "id": 14
+    },
+    {
+      "expense_type": "card",
+      "expense_date": "2023-12-11",
+      "expense_amount": "58",
+      "description": "hjkhj",
+      "id": 15
+    }
+  ]
 }

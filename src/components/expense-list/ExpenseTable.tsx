@@ -23,9 +23,9 @@ const ExpenseTable:FC<ExpenseTableProps> = ({expenses}) => {
           </tr>
           </thead>
           <tbody>
-            {expenses.map(({expense_type, expense_date, expense_amount, description}, index) => {
+            {expenses.map(({expense_type, expense_date, expense_amount, description, id }, index) => {
               return (
-                <tr>
+                <tr key={id}>
                 <td>{index + 1}</td>
                 <td className="expense-item">{expense_type}</td>
                 <td className="expense-item">{expense_date}</td>

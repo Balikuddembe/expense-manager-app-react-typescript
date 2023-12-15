@@ -1,22 +1,50 @@
 import { Button, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form';
 import { Expense } from '../types';
+import { FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const ExpenseForm = () => {
+interface ExpenseFormProps {
+  onSubmitForm: (data:Expense) => Promise<boolean>
+}
+
+const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm }) => {
+  const[succesMsg, setSuccesMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<Expense>();
 
-  const onSubmit = (data:Expense) => {
+ const navigate = useNavigate();
+
+  const onSubmit = async (data:Expense) => {
     console.log("data", data);
+    const isSuccess = await onSubmitForm(data);
+    if(isSuccess) {
+      reset();
+      setErrorMsg('');
+      setSuccesMsg('Expense added successfully');
+      setTimeout(() => {
+        setSuccesMsg('');
+        navigate('/');
+      }, 3000);
+      console.log('success');
+    } else {
+      setErrorMsg('Error while adding expense.Try again')
+      console.log('failure');
+    }
   };
-  console.log("errors", errors);
+  // console.log("errors", errors);
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      {succesMsg && <p className='success-msg'>{succesMsg}</p>}
+      {errorMsg && <p className='error-msg'>{errorMsg}</p>}
       <Form.Group className='mb-3' controlId='expense_type'>
       <Form.Label>Expense Type</Form.Label>
+      {/* register your input into the hook by invoking the "register" function && include validation with required*/}
     <Form.Select aria-label="Expense Type" {...register('expense_type', {
       required: true
     })}>
@@ -24,6 +52,7 @@ const ExpenseForm = () => {
       <option value="cash">Cash</option>
       <option value="card">Card</option>
     </Form.Select>
+    {/* errors will return when field validation fails  */}
     {errors.expense_type && (
     <p className='error-msg'>please enter expense type</p>)}
     </Form.Group>
