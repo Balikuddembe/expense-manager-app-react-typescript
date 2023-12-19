@@ -18,36 +18,15 @@
       "id": 3,
       "expense_type": "cash",
       "expense_date": "2023-04-16",
-      "expense_amount": "10000",
+      "expense_amount": "45",
       "description": "Personal expenses"
     },
     {
       "expense_type": "card",
       "expense_date": "2023-11-26",
       "expense_amount": "150",
-      "description": "Suit",
+      "description": "Cups",
       "id": 4
-    },
-    {
-      "expense_type": "cash",
-      "expense_date": "2023-11-27",
-      "expense_amount": "100",
-      "description": "chips",
-      "id": 5
-    },
-    {
-      "expense_type": "cash",
-      "expense_date": "2023-12-13",
-      "expense_amount": "180",
-      "description": "Salat",
-      "id": 6
-    },
-    {
-      "expense_type": "card",
-      "expense_date": "2023-12-03",
-      "expense_amount": "100",
-      "description": "car",
-      "id": 7
     }
   ]
 }
