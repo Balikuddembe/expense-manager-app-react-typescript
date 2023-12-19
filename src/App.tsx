@@ -40,7 +40,7 @@ const App = () => {
     <BrowserRouter>
     <Layout>
       <Routes>
-        <Route path="/" element={<ExpenseList isLoading={isLoading} errorMsg={errorMsg} expenses={expenses}/>}/>
+        <Route path="/" element={<ExpenseList handleRefresh={handleRefresh} isLoading={isLoading} errorMsg={errorMsg} expenses={expenses}/>}/>
         <Route path="/add" element={<AddExpense handleRefresh={handleRefresh} />}/>
         <Route path="/edit/:id" element={<EditExpense handleRefresh={handleRefresh} />} />
         <Route path="/search" element={<SearchExpense />}/>

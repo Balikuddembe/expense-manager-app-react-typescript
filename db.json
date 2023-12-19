@@ -1,32 +1,25 @@
 {
   "expenses": [
     {
-      "id": 1,
       "expense_type": "cash",
-      "expense_date": "2023-02-16",
-      "expense_amount": "1000",
-      "description": "Electricity bill"
+      "expense_date": "2023-12-11",
+      "expense_amount": "3000",
+      "description": "Christmas shopping",
+      "id": 1
     },
     {
-      "id": 2,
-      "expense_type": "card",
-      "expense_date": "2023-04-16",
-      "expense_amount": "500",
-      "description": "Internet bill "
-    },
-    {
-      "id": 3,
       "expense_type": "cash",
-      "expense_date": "2023-04-16",
-      "expense_amount": "45",
-      "description": "Personal expenses"
+      "expense_date": "2023-12-06",
+      "expense_amount": "250",
+      "description": "Water bills",
+      "id": 2
     },
     {
       "expense_type": "card",
-      "expense_date": "2023-11-26",
-      "expense_amount": "150",
-      "description": "Cups",
-      "id": 4
+      "expense_date": "2023-12-09",
+      "expense_amount": "400",
+      "description": "House renovation",
+      "id": 3
     }
   ]
 }
