@@ -1,14 +1,15 @@
 import { Button, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form';
 import { Expense } from '../types';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface ExpenseFormProps {
   onSubmitForm: (data:Expense) => Promise<boolean>
+  expense?: Expense | null;
 }
 
-const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm }) => {
+const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm, expense }) => {
   const[succesMsg, setSuccesMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const {
@@ -18,22 +19,34 @@ const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm }) => {
     formState: { errors },
   } = useForm<Expense>();
 
+  const { id, expense_type, expense_date,  expense_amount, description } = expense || {};
+  useEffect(()=> {
+    reset({
+      expense_type,
+      expense_date,
+      expense_amount,
+      description
+    });
+  },[id])
+
  const navigate = useNavigate();
 
   const onSubmit = async (data:Expense) => {
     console.log("data", data);
     const isSuccess = await onSubmitForm(data);
     if(isSuccess) {
-      reset();
+      if(!expense) { // reset for add expense
+        reset();
+      }
       setErrorMsg('');
-      setSuccesMsg('Expense added successfully');
+      setSuccesMsg(`Expense ${expense ? 'updated' : 'added'} successfully.`);
       setTimeout(() => {
         setSuccesMsg('');
         navigate('/');
       }, 3000);
       console.log('success');
     } else {
-      setErrorMsg('Error while adding expense.Try again')
+      setErrorMsg(`Error while ${expense ? 'updating' : 'adding'} expense.Try again`);
       console.log('failure');
     }
   };
@@ -84,7 +97,9 @@ const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm }) => {
     )}
       </Form.Group>
       <Form.Group>
-      <Button type='submit' variant="success">Add Expense</Button>
+      <Button type='submit' variant="success">
+        {expense ? 'Update' : 'Add' } Expense
+      </Button>
       </Form.Group>
     </Form>
   );
