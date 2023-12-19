@@ -1,16 +1,40 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { Expense } from "../types"
 import Table from "react-bootstrap/Table";
 import "./ExpenseTable.css";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { BASE_API_URL } from "../utils/constants";
 
 interface ExpenseTableProps {
-    expenses: Expense[]
+    expenses: Expense[];
+    handleRefresh: () => void;
 }
 
-const ExpenseTable:FC<ExpenseTableProps> = ({expenses}) => {
+const ExpenseTable:FC<ExpenseTableProps> = ({expenses, handleRefresh}) => {
+  const[errorMsg, setErrorMsg] = useState("");
+  const handleDelete = async (id: number) => {
+    // console.log('id', id);
+    // delete modal
+   const shouldDelete = window.confirm('Are you sure you want to delete this expense?');
+   
+   if(shouldDelete) {
+    try {
+      setErrorMsg("");
+      const {data} = await axios.delete(`${BASE_API_URL}/${id}`);
+      console.log('data', data);
+      handleRefresh();
+    } catch (error) {
+      console.log(error);
+      setErrorMsg("Error while deleting expense.Please try again");
+    }
+   }
+   // console.log(shouldDelete);
+  };
   return (
+    <>
+    {errorMsg && <p className="error-msg">{errorMsg}</p>}
     <Table striped bordered hover responsive className="expense-list">
       <thead>
         <tr>
@@ -38,7 +62,7 @@ const ExpenseTable:FC<ExpenseTableProps> = ({expenses}) => {
                   </Link>
                 </td>
                 <td>
-                <Button variant="danger" size="sm">Delete</Button>
+                <Button onClick={() => handleDelete(id)} variant="danger" size="sm">Delete</Button>
                 </td>
 
               </tr>
@@ -47,6 +71,7 @@ const ExpenseTable:FC<ExpenseTableProps> = ({expenses}) => {
        
         </tbody>
       </Table>
+      </>
   )
 }
 
