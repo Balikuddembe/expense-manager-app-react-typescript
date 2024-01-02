@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { BASE_API_URL } from "../utils/constants";
+import { getFormattedDate, getFormattedPrice, getShortDescription } from "../utils/functions";
 
 interface ExpenseTableProps {
     expenses: Expense[];
@@ -14,6 +15,7 @@ interface ExpenseTableProps {
 
 const ExpenseTable:FC<ExpenseTableProps> = ({expenses, handleRefresh}) => {
   const[errorMsg, setErrorMsg] = useState("");
+
   const handleDelete = async (id: number) => {
     // console.log('id', id);
     // delete modal
@@ -53,16 +55,16 @@ const ExpenseTable:FC<ExpenseTableProps> = ({expenses, handleRefresh}) => {
                 <tr key={id}>
                 <td>{index + 1}</td>
                 <td className="expense-item">{expense_type}</td>
-                <td className="expense-item">{expense_date}</td>
-                <td className="expense-item">{expense_amount}</td>
-                <td className="expense-item">{description}</td>
+                <td className="expense-item">{getFormattedDate(expense_date)}</td>
+                <td className="expense-item">{getFormattedPrice(expense_amount)}</td>
+                <td className="expense-item" title={description}>{getShortDescription(description)}</td>
                 <td>
                   <Link to={`/edit/${id}`}>
-                  <Button variant="info" size="sm">Edit</Button>
+                  <Button variant="info" size="sm" className="button btn-edit">Edit</Button>
                   </Link>
                 </td>
                 <td>
-                <Button onClick={() => handleDelete(id)} variant="danger" size="sm">Delete</Button>
+                <Button onClick={() => handleDelete(id)} variant="danger" size="sm" className="button btn-delete">Delete</Button>
                 </td>
 
               </tr>

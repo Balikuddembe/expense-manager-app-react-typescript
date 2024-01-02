@@ -1,25 +1,32 @@
 {
   "expenses": [
     {
-      "expense_type": "cash",
-      "expense_date": "2023-12-11",
-      "expense_amount": "3000",
-      "description": "Christmas shopping",
-      "id": 1
-    },
-    {
-      "expense_type": "cash",
-      "expense_date": "2023-12-06",
-      "expense_amount": "250",
-      "description": "Water bills",
-      "id": 2
-    },
-    {
       "expense_type": "card",
       "expense_date": "2023-12-09",
       "expense_amount": "400",
       "description": "House renovation",
       "id": 3
+    },
+    {
+      "expense_type": "cash",
+      "expense_date": "2024-01-11",
+      "expense_amount": "50000",
+      "description": "Pizza und Kase",
+      "id": 4
+    },
+    {
+      "expense_type": "card",
+      "expense_date": "2024-01-01",
+      "expense_amount": "1000",
+      "description": "Apotheke",
+      "id": 5
+    },
+    {
+      "expense_type": "card",
+      "expense_date": "2023-12-31",
+      "expense_amount": "50000",
+      "description": "Laptop this is  a laptop  Laptop this is  a laptop  Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop ",
+      "id": 6
     }
   ]
 }
