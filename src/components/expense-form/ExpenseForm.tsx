@@ -43,7 +43,7 @@ const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm, expense }) => {
       setTimeout(() => {
         setSuccesMsg('');
         navigate('/');
-      }, 3000);
+      }, 2000);
       console.log('success');
     } else {
       setErrorMsg(`Error while ${expense ? 'updating' : 'adding'} expense.Try again`);
