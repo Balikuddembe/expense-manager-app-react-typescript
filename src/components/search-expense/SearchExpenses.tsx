@@ -2,7 +2,7 @@ import { Form } from "react-bootstrap";
 import "./SearchExpenses.css";
 import ExpenseTable from "../expense-list/ExpenseTable";
 import { Expense } from "../types";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 
 interface SearchExpensesProps {
   expenses: Expense[];
@@ -13,8 +13,26 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
   expenses,
   handleRefresh,
 }) => {
-  const handleSubmit = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredExpenses, setFilteredExpenses] = useState<Expense[]>([]);
+
+  useEffect (() => {
+    setFilteredExpenses(expenses);
+  },[expenses]);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     console.log("submit");
+    
+    if(searchTerm.trim() !== '') {
+      setFilteredExpenses(
+        expenses.filter((expense) => 
+        expense.description.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        );
+    } else {
+      setFilteredExpenses(expenses);
+    }
   };
   return (
     <div>
@@ -26,6 +44,7 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
               <Form.Control
                 type="search"
                 placeholder="Enter description to search and press enter key"
+                onChange={(event) => setSearchTerm(event.target.value) }
               />
             </Form.Group>
           </Form>
@@ -57,7 +76,7 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
           </div>
         </div>
       </div>
-      <ExpenseTable expenses={expenses} handleRefresh={handleRefresh} />
+      <ExpenseTable expenses={filteredExpenses} handleRefresh={handleRefresh} />
     </div>
   );
 };
