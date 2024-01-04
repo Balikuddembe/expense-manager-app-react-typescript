@@ -20,6 +20,13 @@
       "expense_amount": "4545",
       "description": "ssewfewvv",
       "id": 8
+    },
+    {
+      "expense_type": "cash",
+      "expense_date": "2024-01-09",
+      "expense_amount": "90",
+      "description": "coffee",
+      "id": 9
     }
   ]
 }
