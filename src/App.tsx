@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import ExpenseList from "./components/expense-list/ExpenseList";
 import AddExpense from "./components/add-expense/AddExpense";
-import SearchExpense from "./components/search-expense/SearchExpense";
+import SearchExpense from "./components/search-expense/SearchExpenses";
 import Profile from "./components/profile/Profile";
 import { useEffect, useState } from "react";
 import axios from 'axios';
@@ -43,7 +43,7 @@ const App = () => {
         <Route path="/" element={<ExpenseList handleRefresh={handleRefresh} isLoading={isLoading} errorMsg={errorMsg} expenses={expenses}/>}/>
         <Route path="/add" element={<AddExpense handleRefresh={handleRefresh} />}/>
         <Route path="/edit/:id" element={<EditExpense handleRefresh={handleRefresh} />} />
-        <Route path="/search" element={<SearchExpense />}/>
+        <Route path="/search" element={<SearchExpense expenses={expenses} handleRefresh={handleRefresh}/>}/>
         <Route path="/profile" element={<Profile />}/>
         <Route path="*" element={<Navigate to="/" />}/>
       </Routes>
