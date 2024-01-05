@@ -1,9 +1,113 @@
-import React from 'react'
+import { Button, Form } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { IProfile } from "../types";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { BASE_API_URL } from "../utils/constants";
 
 const Profile = () => {
-  return (
-    <div>Profile</div>
-  )
-}
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const[succesMsg, setSuccesMsg] = useState('');
+  const [profileInfo, setProfileInfo] = useState<IProfile | null>(null);
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IProfile>();
 
-export default Profile
+  useEffect(() => {
+    const getProfileInfo = async () => {
+     try {
+      setIsLoading(true);
+      const {data} = await axios.get(`${BASE_API_URL}/profile`);
+      setProfileInfo(data);
+      // console.log('data', data);
+     } catch (error) {
+      setErrorMsg('Error while getting profile informtion.Try agail later');
+     } finally {
+      setIsLoading(false);
+     } 
+    };
+    getProfileInfo();
+  }, []);
+
+  useEffect(() => {
+    reset({
+      first_name: profileInfo?.first_name || '',
+      last_name: profileInfo?.last_name || '',
+      email: profileInfo?.email || ''
+    })
+    },[profileInfo]);
+   
+  const onSubmit = async (data: IProfile) => {
+    console.log('data', data);
+    setErrorMsg("");
+    try {
+      await axios.patch(`${BASE_API_URL}/profile`, data);
+      setSuccesMsg("Profile is updated successfully");
+      setTimeout (() => {
+        setSuccesMsg("");
+      },2000)
+    } catch (error) {
+      setSuccesMsg("");
+      setErrorMsg("Error while updating profile.Try again later");
+    }
+  };
+
+  return (
+    <div className="main-content">
+      <h2 className="my-3 text-center">Profile</h2>
+      {isLoading && <p className="loading">Loading...</p>}
+      {succesMsg && <p className="error-msg">{succesMsg}</p>}
+      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form.Group className="mb-3" controlId="first_name">
+        <Form.Label>First Name</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter your first name"
+          {...register('first_name', {
+            required: true
+          })}
+        />
+        {errors.first_name && (
+          <p className="error-msg">Plese enter your first name</p>
+        )}
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="last_name">
+        <Form.Label>Last Name</Form.Label>
+        <Form.Control type="text" placeholder="Enter your last name"
+        {...register('last_name', {
+          required: true
+        })}
+        />
+        {errors.last_name && (
+          <p className="error-msg">please enter your last name</p>
+        )}
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="email">
+        <Form.Label>Email</Form.Label>
+        <Form.Control type="email" placeholder="Enter your email" 
+        {...register('email', {
+          required: true
+        })}
+        />
+        {errors.email && (
+          <p className="error-msg">Please enter your email</p>
+        )}
+      </Form.Group>
+
+      <Form.Group>
+        <Button type="submit" variant="success">
+          Update Profile
+        </Button>
+      </Form.Group>
+      </Form>
+    </div>
+  );
+};
+
+export default Profile;
