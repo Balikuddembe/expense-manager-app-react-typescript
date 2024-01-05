@@ -27,6 +27,13 @@
       "expense_amount": "90",
       "description": "coffee",
       "id": 9
+    },
+    {
+      "expense_type": "cash",
+      "expense_date": "2023-09-04",
+      "expense_amount": "3",
+      "description": "SpringRoll",
+      "id": 10
     }
   ]
 }
