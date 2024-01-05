@@ -42,5 +42,10 @@
       "description": "Roman",
       "id": 11
     }
-  ]
+  ],
+  "profile": {
+    "first_name": "Emma",
+    "last_name": "Balix Dap",
+    "email": "balixemma@gmail.com"
+  }
 }
