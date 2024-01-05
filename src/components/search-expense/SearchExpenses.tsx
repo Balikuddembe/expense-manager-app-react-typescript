@@ -40,8 +40,9 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
     value: string;
   }) => {
     const { type, value } = selectedOption;
+    const currentYear = new Date().getFullYear();
     switch (type) {
-      case "expense_type":
+      case 'expense_type':
         if (value) {
           setFilteredExpenses(
             expenses.filter((expense) => expense.expense_type === value)
@@ -50,9 +51,7 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
           setFilteredExpenses(expenses);
         }
         break;
-
-      case "expense_date":
-        const currentYear = new Date().getFullYear();
+      case 'expense_date':
         if (value) {
           setFilteredExpenses(
             expenses.filter((expense) =>
@@ -63,6 +62,9 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
               )
             )
           );
+        }
+        else {
+          setFilteredExpenses(expenses);
         }
         break;
     }
