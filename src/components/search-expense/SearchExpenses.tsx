@@ -15,6 +15,9 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredExpenses, setFilteredExpenses] = useState<Expense[]>([]);
+  const [expenseType, setExpenseType] = useState('');
+  const [expenseYear, setExpenseYear] = useState('');
+  const [sortBy, setSortBy] = useState('');
 
   useEffect(() => {
     setFilteredExpenses(expenses);
@@ -43,6 +46,7 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
     const currentYear = new Date().getFullYear();
     switch (type) {
       case 'expense_type':
+        setExpenseType(value);
         if (value) {
           setFilteredExpenses(
             expenses.filter((expense) => expense.expense_type === value)
@@ -50,8 +54,12 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
         } else {
           setFilteredExpenses(expenses);
         }
+        setExpenseYear('');
+        setSortBy('');
+        setSearchTerm('');
         break;
       case 'expense_date':
+        setExpenseYear(value);
         if (value) {
           setFilteredExpenses(
             expenses.filter((expense) =>
@@ -66,6 +74,41 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
         else {
           setFilteredExpenses(expenses);
         }
+        setExpenseType('');
+        setSortBy('');
+        setSearchTerm('');
+        break;
+
+        case 'sort_by':
+          setSortBy(value);
+          if(value) {
+            if(value === 'desc') {
+            setFilteredExpenses(
+              expenses.slice().sort((firstExpense, secondExpense) => {
+                if(firstExpense.expense_date < secondExpense.expense_date) return -1;
+                if(firstExpense.expense_date > secondExpense.expense_date) return 1;
+                return 0;
+              })
+            );
+            }
+            else if(value === 'asc') {
+                setFilteredExpenses(
+                  expenses.slice().sort((firstExpense, secondExpense) => {
+                    if(firstExpense.expense_date < secondExpense.expense_date) return 1;
+                    if(firstExpense.expense_date > secondExpense.expense_date) return -1;
+                    return 0;
+                  })
+                );
+                
+            }
+          } else {
+            setFilteredExpenses(expenses);
+          }
+          setExpenseType('');
+          setExpenseYear('');
+          setSearchTerm('');
+        break;
+        default:
         break;
     }
   };
@@ -80,7 +123,12 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
               <Form.Control
                 type="search"
                 placeholder="Enter description to search and press enter key"
-                onChange={(event) => setSearchTerm(event.target.value)}
+                value={searchTerm}
+                onChange={(event) => {
+                  setExpenseType('');
+                  setExpenseYear('');
+                  setSortBy('');
+                  setSearchTerm(event.target.value)}}
               />
             </Form.Group>
           </Form>
@@ -90,6 +138,7 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
             <Form.Label>Expense Type</Form.Label>
             <Form.Select
               aria-label="Select Expense Type"
+              value={expenseType}
               onChange={(event) =>
                 handleFilterChange({
                   type: "expense_type",
@@ -106,6 +155,7 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
             <Form.Label>Expense Year</Form.Label>
             <Form.Select
               aria-label="Select Year"
+              value={expenseYear}
               onChange={(event) =>
                 handleFilterChange({
                   type: "expense_date",
@@ -122,6 +172,7 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
             <Form.Label>Sort By</Form.Label>
             <Form.Select
               aria-label="Select Sort By"
+              value={sortBy}
               onChange={(event) =>
                 handleFilterChange({
                   type: "sort_by",
@@ -130,8 +181,8 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
               }
             >
               <option value="">Select Sort By</option>
-              <option value="oldest_first">Oldest First</option>
-              <option value="newest_first">Newest First</option>
+              <option value="desc">Oldest First</option>
+              <option value="asc">Newest First</option>
             </Form.Select>
           </div>
         </div>
