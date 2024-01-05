@@ -3,30 +3,44 @@
     {
       "expense_type": "card",
       "expense_date": "2023-12-31",
-      "expense_amount": "400",
-      "description": "Laptop this is  a laptop  Laptop this is  a laptop  Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop Laptop this is  a laptop ",
+      "expense_amount": "1000",
+      "description": "Laptop",
       "id": 6
     },
     {
       "expense_type": "cash",
       "expense_date": "2024-01-01",
-      "expense_amount": "45",
-      "description": "ssewfewvv",
+      "expense_amount": "58",
+      "description": "Kartoffel, Avacado, Brokkoli, Kohl",
       "id": 7
     },
     {
       "expense_type": "cash",
       "expense_date": "2024-01-01",
-      "expense_amount": "4545",
-      "description": "ssewfewvv",
+      "expense_amount": "500",
+      "description": "Die Arztrechnung",
       "id": 8
     },
     {
       "expense_type": "cash",
       "expense_date": "2024-01-09",
       "expense_amount": "90",
-      "description": "coffee",
+      "description": "Kaffee und Brot",
       "id": 9
+    },
+    {
+      "expense_type": "cash",
+      "expense_date": "2023-09-04",
+      "expense_amount": "3",
+      "description": "SpringRoll",
+      "id": 10
+    },
+    {
+      "expense_type": "card",
+      "expense_date": "2024-01-03",
+      "expense_amount": "3",
+      "description": "Roman",
+      "id": 11
     }
   ]
 }
