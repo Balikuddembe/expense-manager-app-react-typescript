@@ -61,6 +61,7 @@ const Profile = () => {
       <h2 className="my-3 text-center">Profile</h2>
       {isLoading && <p className="loading">Loading...</p>}
       {succesMsg && <p className="error-msg">{succesMsg}</p>}
+      {errorMsg && <p className="error-msg">{errorMsg}</p>}
       <Form onSubmit={handleSubmit(onSubmit)}>
       <Form.Group className="mb-3" controlId="first_name">
         <Form.Label>First Name</Form.Label>
