@@ -19,7 +19,7 @@ const App = () => {
       setIsLoading(true);
       setErrorMsg('');
       const getExpenses = async() => {
-        const { data } = await axios.get(BASE_API_URL);
+        const { data } = await axios.get(`${BASE_API_URL}/expenses`);
         console.log(data)
         setExpenses(data);
       }

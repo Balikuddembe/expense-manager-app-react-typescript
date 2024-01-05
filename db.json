@@ -42,5 +42,10 @@
       "description": "Roman",
       "id": 11
     }
-  ]
+  ],
+  "profile": {
+    "first_name": "Emmanuel",
+    "last_name": "Balikuddembe",
+    "email": "balixex@gmail.com"
+  }
 }
