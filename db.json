@@ -2,45 +2,17 @@
   "expenses": [
     {
       "expense_type": "card",
-      "expense_date": "2023-12-31",
-      "expense_amount": "1000",
-      "description": "Laptop",
-      "id": 6
+      "expense_date": "2024-01-30",
+      "expense_amount": "400",
+      "description": "Hause",
+      "id": 1
     },
     {
       "expense_type": "cash",
-      "expense_date": "2024-01-01",
-      "expense_amount": "58",
-      "description": "Kartoffel, Avacado, Brokkoli, Kohl",
-      "id": 7
-    },
-    {
-      "expense_type": "cash",
-      "expense_date": "2024-01-01",
-      "expense_amount": "500",
-      "description": "Die Arztrechnung",
-      "id": 8
-    },
-    {
-      "expense_type": "cash",
-      "expense_date": "2024-01-09",
-      "expense_amount": "90",
-      "description": "Kaffee und Brot",
-      "id": 9
-    },
-    {
-      "expense_type": "cash",
-      "expense_date": "2023-09-04",
-      "expense_amount": "3",
-      "description": "SpringRoll",
-      "id": 10
-    },
-    {
-      "expense_type": "card",
-      "expense_date": "2024-01-03",
-      "expense_amount": "3",
-      "description": "Roman",
-      "id": 11
+      "expense_date": "2024-01-28",
+      "expense_amount": "365",
+      "description": "Shoes",
+      "id": 2
     }
   ],
   "profile": {

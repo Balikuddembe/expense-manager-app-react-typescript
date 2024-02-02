@@ -6,9 +6,9 @@ import { BASE_API_URL } from "../utils/constants";
 import { Expense } from "../types";
 
 interface EditExpenseProps {
-    handleRefresh: () => void;
+  handleRefresh: () => void;
 }
-const EditExpense: FC<EditExpenseProps> = ({handleRefresh}) => {
+const EditExpense: FC<EditExpenseProps> = ({ handleRefresh }) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [expense, setExpense] = useState(null);
@@ -19,7 +19,7 @@ const EditExpense: FC<EditExpenseProps> = ({handleRefresh}) => {
       try {
         setIsLoading(true);
         setErrorMsg("");
-        const { data } = await axios.get(`${BASE_API_URL}/${id}`);
+        const { data } = await axios.get(`${BASE_API_URL}/expenses/${id}`);
         setExpense(data);
         console.log("expense", data);
       } catch (error) {
@@ -34,16 +34,16 @@ const EditExpense: FC<EditExpenseProps> = ({handleRefresh}) => {
 
   // update data
   const handleSubmit = async (inputData: Expense): Promise<boolean> => {
-    try{
-        const {data} = await axios.patch(`${BASE_API_URL}/${id}`, {
-            ...inputData
-        });
-        handleRefresh();
-        console.log('update', data);
-        return true;
-    } catch(error) {
-        console.log(error);
-        return false;
+    try {
+      const { data } = await axios.patch(`${BASE_API_URL}/expenses/${id}`, {
+        ...inputData,
+      });
+      handleRefresh();
+      console.log("update", data);
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
     }
     return true;
   };
