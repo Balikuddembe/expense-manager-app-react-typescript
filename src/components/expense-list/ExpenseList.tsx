@@ -16,7 +16,7 @@ const ExpenseList:FC<ExpenseListProps> = ({isLoading, expenses, errorMsg, handle
       {isLoading && <p className="loading">Loading ...</p>}
       {errorMsg && <p className="error-msg">{errorMsg}</p>}
       {expenses.length > 0 ? <ExpenseTable expenses={expenses} handleRefresh={handleRefresh}/> : (
-        <h4 className="error-msg">No matching expenses found</h4>
+        !isLoading && !errorMsg && <h4 className="error-msg">No matching expenses found</h4>
       )}
       
       </div>
