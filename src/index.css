@@ -51,6 +51,7 @@ a {
   letter-spacing: 1px;
   margin-top: 4px;
   font-size: 20px;
+  text-align: center;
 }
 
 .success-msg {
