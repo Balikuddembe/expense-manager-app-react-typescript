@@ -7,17 +7,21 @@ import { FC, useEffect, useState } from "react";
 interface SearchExpensesProps {
   expenses: Expense[];
   handleRefresh: () => void;
+  isLoading: boolean;
+  errorMsg: string;
 }
 
 const SearchExpenses: FC<SearchExpensesProps> = ({
   expenses,
   handleRefresh,
+  isLoading,
+  errorMsg,
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredExpenses, setFilteredExpenses] = useState<Expense[]>([]);
-  const [expenseType, setExpenseType] = useState('');
-  const [expenseYear, setExpenseYear] = useState('');
-  const [sortBy, setSortBy] = useState('');
+  const [expenseType, setExpenseType] = useState("");
+  const [expenseYear, setExpenseYear] = useState("");
+  const [sortBy, setSortBy] = useState("");
 
   useEffect(() => {
     setFilteredExpenses(expenses);
@@ -45,7 +49,7 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
     const { type, value } = selectedOption;
     const currentYear = new Date().getFullYear();
     switch (type) {
-      case 'expense_type':
+      case "expense_type":
         setExpenseType(value);
         if (value) {
           setFilteredExpenses(
@@ -54,11 +58,11 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
         } else {
           setFilteredExpenses(expenses);
         }
-        setExpenseYear('');
-        setSortBy('');
-        setSearchTerm('');
+        setExpenseYear("");
+        setSortBy("");
+        setSearchTerm("");
         break;
-      case 'expense_date':
+      case "expense_date":
         setExpenseYear(value);
         if (value) {
           setFilteredExpenses(
@@ -70,45 +74,46 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
               )
             )
           );
-        }
-        else {
+        } else {
           setFilteredExpenses(expenses);
         }
-        setExpenseType('');
-        setSortBy('');
-        setSearchTerm('');
+        setExpenseType("");
+        setSortBy("");
+        setSearchTerm("");
         break;
 
-        case 'sort_by':
-          setSortBy(value);
-          if(value) {
-            if(value === 'desc') {
+      case "sort_by":
+        setSortBy(value);
+        if (value) {
+          if (value === "desc") {
             setFilteredExpenses(
               expenses.slice().sort((firstExpense, secondExpense) => {
-                if(firstExpense.expense_date < secondExpense.expense_date) return -1;
-                if(firstExpense.expense_date > secondExpense.expense_date) return 1;
+                if (firstExpense.expense_date < secondExpense.expense_date)
+                  return -1;
+                if (firstExpense.expense_date > secondExpense.expense_date)
+                  return 1;
                 return 0;
               })
             );
-            }
-            else if(value === 'asc') {
-                setFilteredExpenses(
-                  expenses.slice().sort((firstExpense, secondExpense) => {
-                    if(firstExpense.expense_date < secondExpense.expense_date) return 1;
-                    if(firstExpense.expense_date > secondExpense.expense_date) return -1;
-                    return 0;
-                  })
-                );
-                
-            }
-          } else {
-            setFilteredExpenses(expenses);
+          } else if (value === "asc") {
+            setFilteredExpenses(
+              expenses.slice().sort((firstExpense, secondExpense) => {
+                if (firstExpense.expense_date < secondExpense.expense_date)
+                  return 1;
+                if (firstExpense.expense_date > secondExpense.expense_date)
+                  return -1;
+                return 0;
+              })
+            );
           }
-          setExpenseType('');
-          setExpenseYear('');
-          setSearchTerm('');
+        } else {
+          setFilteredExpenses(expenses);
+        }
+        setExpenseType("");
+        setExpenseYear("");
+        setSearchTerm("");
         break;
-        default:
+      default:
         break;
     }
   };
@@ -125,10 +130,11 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
                 placeholder="Enter description to search and press enter key"
                 value={searchTerm}
                 onChange={(event) => {
-                  setExpenseType('');
-                  setExpenseYear('');
-                  setSortBy('');
-                  setSearchTerm(event.target.value)}}
+                  setExpenseType("");
+                  setExpenseYear("");
+                  setSortBy("");
+                  setSearchTerm(event.target.value);
+                }}
               />
             </Form.Group>
           </Form>
@@ -187,7 +193,18 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
           </div>
         </div>
       </div>
-      <ExpenseTable expenses={filteredExpenses} handleRefresh={handleRefresh} />
+      {isLoading && <p className="loading">Loading...</p>}
+      {errorMsg && <p className="error-msg">{errorMsg}</p>}
+      {!isLoading &&
+        !errorMsg &&
+        (filteredExpenses.length > 0 ? (
+          <ExpenseTable
+            expenses={filteredExpenses}
+            handleRefresh={handleRefresh}
+          />
+        ) : (
+          <h4 className="error-msg">No matching expenses found.</h4>
+        ))}
     </div>
   );
 };
