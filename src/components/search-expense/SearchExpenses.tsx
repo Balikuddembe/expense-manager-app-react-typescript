@@ -194,7 +194,7 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
         </div>
       </div>
       {isLoading && <p className="loading">Loading...</p>}
-      {errorMsg && <p className="error-msg">{errorMsg}</p>}
+      {errorMsg && <p className="error-msg" style={{ textAlign: "center" }}>{errorMsg}</p>}
       {!isLoading &&
         !errorMsg &&
         (filteredExpenses.length > 0 ? (
