@@ -8,12 +8,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_API_URL } from "./components/utils/constants";
 import EditExpense from "./components/edit-expense/EditExpense";
+import Register from "./components/register/Register";
 
 const App = () => {
   const [expenses, setExpenses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [refresh, setRefresh] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  console.log(setIsLoggedIn);
 
   useEffect(() => {
     const getExpenses = async () => {
@@ -38,7 +41,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Layout>
+      <Layout isLoggedIn = {isLoggedIn}>
         <Routes>
           <Route
             path="/"
@@ -70,6 +73,7 @@ const App = () => {
               />
             }
           />
+          <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

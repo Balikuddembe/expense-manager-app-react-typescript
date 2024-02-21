@@ -13,13 +13,6 @@
       "expense_amount": "365",
       "description": "Shoes",
       "id": 2
-    },
-    {
-      "expense_type": "card",
-      "expense_date": "2024-02-07",
-      "expense_amount": "600",
-      "description": "German Course",
-      "id": 3
     }
   ],
   "profile": {
