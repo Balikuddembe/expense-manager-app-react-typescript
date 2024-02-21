@@ -6,14 +6,16 @@ import "./Register.css";
 const Register = () => {
   const [succesMsg, setSuccesMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  console.log(setSuccesMsg);
+  console.log(setErrorMsg);
   const {
     register,
     handleSubmit,
-    reset,
+    // reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data: any) => {};
+  const onSubmit = async () => {};
 
   console.log("errors", errors);
 

@@ -16,6 +16,7 @@ const App = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [refresh, setRefresh] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  console.log(setIsLoggedIn);
 
   useEffect(() => {
     const getExpenses = async () => {
