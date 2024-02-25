@@ -32,6 +32,7 @@ const Register: FC<RegisterProps> = ({ setIsLoggedIn }) => {
       setErrorMsg("");
       setSuccesMsg("");
       const { cpassword, ...rest } = data;
+      console.log(cpassword);
       const { data: registeredUser } = await axios.post(
         `${BASE_API_URL}/users`,
         rest
