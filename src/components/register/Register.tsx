@@ -1,23 +1,59 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import "./Register.css";
+import axios from "axios";
+import { BASE_API_URL } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
 
-const Register = () => {
+interface Iprofile {
+  cpassword: string;
+  email: string;
+  password: string;
+}
+
+interface RegisterProps {
+  setIsLoggedIn: (data: boolean) => void;
+}
+const Register: FC<RegisterProps> = ({ setIsLoggedIn }) => {
+  const navigate = useNavigate();
   const [succesMsg, setSuccesMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-  console.log(setSuccesMsg);
-  console.log(setErrorMsg);
   const {
     register,
     handleSubmit,
-    // reset,
+    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm<Iprofile>();
 
-  const onSubmit = async () => {};
-
-  console.log("errors", errors);
+  const onSubmit = async (data: Iprofile) => {
+    console.log("data", data);
+    try {
+      setErrorMsg("");
+      setSuccesMsg("");
+      const { cpassword, ...rest } = data;
+      console.log(cpassword);
+      const { data: registeredUser } = await axios.post(
+        `${BASE_API_URL}/users`,
+        rest
+      );
+      setSuccesMsg("Registration is successful.");
+      reset({
+        email: "",
+        password: "",
+        cpassword: "",
+      });
+      setTimeout(() => {
+        setSuccesMsg("");
+        setIsLoggedIn(true);
+        navigate("/");
+      }, 3000);
+      console.log("registeredUser", registeredUser);
+    } catch (error) {
+      console.log(error);
+      setErrorMsg("Error while registering user.Please try again later.");
+    }
+  };
 
   return (
     <div className="main-content">
@@ -26,7 +62,6 @@ const Register = () => {
         <Form onSubmit={handleSubmit(onSubmit)}>
           {succesMsg && <p className="success-msg">{succesMsg}</p>}
           {errorMsg && <p className="error-msg">{errorMsg}</p>}
-
           <Form.Group className="mb-3" controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control

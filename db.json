@@ -26,5 +26,12 @@
     "first_name": "Emmanuel",
     "last_name": "Balikuddembe",
     "email": "balixex@gmail.com"
-  }
+  },
+  "users": [
+    {
+      "email": "balixemma@gmail.com",
+      "password": "1234",
+      "id": 1
+    }
+  ]
 }

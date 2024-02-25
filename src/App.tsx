@@ -41,7 +41,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Layout isLoggedIn = {isLoggedIn}>
+      <Layout isLoggedIn={isLoggedIn}>
         <Routes>
           <Route
             path="/"
@@ -73,7 +73,10 @@ const App = () => {
               />
             }
           />
-          <Route path="/register" element={<Register />} />
+          <Route
+            path="/register"
+            element={<Register setIsLoggedIn={setIsLoggedIn} />}
+          />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
