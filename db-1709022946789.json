@@ -29,9 +29,14 @@
   },
   "users": [
     {
-      "email": "test@gmail.com",
-      "password": "123456",
+      "email": "balixemma@gmail.com",
+      "password": "1234",
       "id": 1
+    },
+    {
+      "email": "balixemma@gmail.com",
+      "password": "vvvvvvv",
+      "id": 2
     }
   ]
 }
