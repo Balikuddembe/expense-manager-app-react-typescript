@@ -123,7 +123,7 @@ const Register: FC<RegisterProps> = ({ setIsLoggedIn }) => {
           </Form.Group>
 
           <Form.Group>
-            <Button type="submit" variant="success">
+            <Button type="submit">
               Register
             </Button>
             <div className="mt-3 register-btn">
