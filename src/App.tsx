@@ -9,6 +9,7 @@ import axios from "axios";
 import { BASE_API_URL } from "./components/utils/constants";
 import EditExpense from "./components/edit-expense/EditExpense";
 import Register from "./components/register/Register";
+import Login from "./components/login/Login";
 
 const App = () => {
   const [expenses, setExpenses] = useState([]);
@@ -76,6 +77,10 @@ const App = () => {
           <Route
             path="/register"
             element={<Register setIsLoggedIn={setIsLoggedIn} />}
+          />
+          <Route
+            path="/login"
+            element={<Login setIsLoggedIn={setIsLoggedIn} />}
           />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<Navigate to="/" />} />
