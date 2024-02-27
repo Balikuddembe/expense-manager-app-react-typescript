@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import "./Register.css";
 import axios from "axios";
 import { BASE_API_URL } from "../utils/constants";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface Iprofile {
   cpassword: string;
@@ -23,6 +23,7 @@ const Register: FC<RegisterProps> = ({ setIsLoggedIn }) => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<Iprofile>();
 
@@ -67,17 +68,17 @@ const Register: FC<RegisterProps> = ({ setIsLoggedIn }) => {
             <Form.Control
               type="email"
               {...register("email", {
-                required: true,
-                pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                required: "Email is required",
+                pattern: {
+                  value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                  message: "Email is not valid",
+                },
               })}
               placeholder="Enter your email"
             />
             {/* errors will return when field validation fails  */}
-            {errors.email && errors.email.type === "required" && (
-              <p className="error-msg">Email is required.</p>
-            )}
-            {errors.email && errors.email.type === "pattern" && (
-              <p className="error-msg">Email is not valid.</p>
+            {errors.email && (
+              <p className="error-msg">{errors.email.message}</p>
             )}
           </Form.Group>
 
@@ -86,12 +87,16 @@ const Register: FC<RegisterProps> = ({ setIsLoggedIn }) => {
             <Form.Control
               type="password"
               {...register("password", {
-                required: true,
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password should be at-least 6 characters.",
+                },
               })}
               placeholder="Enter your password"
             />
             {errors.password && (
-              <p className="error-msg">Password is required.</p>
+              <p className="error-msg">{errors.password.message}</p>
             )}
           </Form.Group>
 
@@ -101,11 +106,19 @@ const Register: FC<RegisterProps> = ({ setIsLoggedIn }) => {
               type="password"
               placeholder="Enter confirm password"
               {...register("cpassword", {
-                required: true,
+                required: "Confirm password is required.",
+                validate: {
+                  match: (value) => {
+                    if (value !== watch("password")) {
+                      return "Password and confirm password do not match";
+                    }
+                  },
+                },
               })}
             />
+
             {errors.cpassword && (
-              <p className="error-msg">Confirm password is required.</p>
+              <p className="error-msg">{errors.cpassword.message}</p>
             )}
           </Form.Group>
 
@@ -113,6 +126,9 @@ const Register: FC<RegisterProps> = ({ setIsLoggedIn }) => {
             <Button type="submit" variant="success">
               Register
             </Button>
+            <div className="mt-3 register-btn">
+              Already have an account?<Link to="/login">login here</Link>
+            </div>
           </Form.Group>
         </Form>
       </div>
