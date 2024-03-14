@@ -32,11 +32,6 @@
       "email": "azimuthotelfortportal@gmail.com",
       "password": "123456",
       "id": 1
-    },
-    {
-      "email": "support@jetimachinery.com",
-      "password": "1234567",
-      "id": 2
     }
   ]
 }
