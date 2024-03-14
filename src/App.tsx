@@ -10,13 +10,14 @@ import { BASE_API_URL } from "./components/utils/constants";
 import EditExpense from "./components/edit-expense/EditExpense";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
+import useLocalStorage from "./custom-hooks/useLocalStorage";
 
 const App = () => {
   const [expenses, setExpenses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [refresh, setRefresh] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useLocalStorage("isLoggedIn", false);
   console.log(setIsLoggedIn);
 
   useEffect(() => {
